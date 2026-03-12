@@ -15,45 +15,72 @@ from telegram.ext import (
 TOKEN = os.getenv("TOKEN")
 ADMIN_ID = 728810082
 
-# =========================
-# إعداد محتوى الكورس
-# =========================
-# ضع file_id الحقيقي لكل فيديو بدل PLACEHOLDER
 VIDEO_CATALOG = {
     "idea1": {
         "title": "📚 المصطلحات الأساسية",
-        "description": "تعلم أهم المصطلحات التي تحتاجها للدخول إلى عالم التداول بشكل صحيح.",
+        "description": "في هذا القسم ستتعلم أهم المصطلحات الأساسية في عالم التداول من البداية.",
         "videos": [
-            {"key": "video1", "title": "🎥 فيديو 1", "file_id": "PLACEHOLDER_VIDEO_1", "is_new": True},
-            {"key": "video2", "title": "🎥 فيديو 2", "file_id": "PLACEHOLDER_VIDEO_2", "is_new": True},
-            {"key": "video3", "title": "🎥 فيديو 3", "file_id": "PLACEHOLDER_VIDEO_3", "is_new": False},
+            {"key": "video1", "title": "🎥 أنواع أسواق المال", "file_id": "PLACEHOLDER_VIDEO_1", "is_new": True},
+            {"key": "video2", "title": "🎥 مزايا الفوركس", "file_id": "PLACEHOLDER_VIDEO_2", "is_new": True},
+            {"key": "video3", "title": "🎥 العملات المتداولة", "file_id": "PLACEHOLDER_VIDEO_3", "is_new": False},
+            {"key": "video4", "title": "🎥 أزواج العملات", "file_id": "PLACEHOLDER_VIDEO_4", "is_new": False},
+            {"key": "video5", "title": "🎥 أحجام العقود", "file_id": "PLACEHOLDER_VIDEO_5", "is_new": False},
+            {"key": "video6", "title": "🎥 النقطة وكيفية حساب الأرباح", "file_id": "PLACEHOLDER_VIDEO_6", "is_new": False},
+            {"key": "video7", "title": "🎥 الرافعة المالية", "file_id": "PLACEHOLDER_VIDEO_7", "is_new": False},
         ],
     },
+
     "idea2": {
         "title": "🏛️ التحليل الأساسي",
-        "description": "فهم الأخبار، الفائدة، التضخم، والناتج المحلي وتأثيرهم على السوق.",
+        "description": "في هذا القسم ستتعلم التحليل الأساسي وتأثير المؤشرات الاقتصادية والسياسية على السوق.",
         "videos": [
-            {"key": "video4", "title": "🎥 فيديو 4", "file_id": "PLACEHOLDER_VIDEO_4", "is_new": True},
-            {"key": "video5", "title": "🎥 فيديو 5", "file_id": "PLACEHOLDER_VIDEO_5", "is_new": False},
-            {"key": "video6", "title": "🎥 فيديو 6", "file_id": "PLACEHOLDER_VIDEO_6", "is_new": False},
+            {"key": "video8", "title": "🎥 معنى التحليل الأساسي", "file_id": "PLACEHOLDER_VIDEO_8", "is_new": True},
+            {"key": "video9", "title": "🎥 معدل الفائدة وتأثيره - الجزء الأول", "file_id": "PLACEHOLDER_VIDEO_9", "is_new": True},
+            {"key": "video10", "title": "🎥 معدل الفائدة وتأثيره - الجزء الثاني", "file_id": "PLACEHOLDER_VIDEO_10", "is_new": False},
+            {"key": "video11", "title": "🎥 الناتج المحلي الإجمالي - الجزء الأول", "file_id": "PLACEHOLDER_VIDEO_11", "is_new": False},
+            {"key": "video12", "title": "🎥 الناتج المحلي الإجمالي - الجزء الثاني", "file_id": "PLACEHOLDER_VIDEO_12", "is_new": False},
+            {"key": "video13", "title": "🎥 معدل البطالة", "file_id": "PLACEHOLDER_VIDEO_13", "is_new": False},
+            {"key": "video14", "title": "🎥 التضخم وأنواعه - الجزء الأول", "file_id": "PLACEHOLDER_VIDEO_14", "is_new": False},
+            {"key": "video15", "title": "🎥 التضخم وأنواعه - الجزء الثاني", "file_id": "PLACEHOLDER_VIDEO_15", "is_new": False},
+            {"key": "video16", "title": "🎥 الأحداث السياسية والتجارة الدولية وتأثيرها", "file_id": "PLACEHOLDER_VIDEO_16", "is_new": False},
         ],
     },
+
     "idea3": {
         "title": "📈 التحليل الفني",
-        "description": "الدعوم والمقاومات، الاتجاهات، النماذج، وإدارة القراءة الفنية للشارت.",
+        "description": "في هذا القسم ستتعلم التحليل الفني وأهم الأدوات والمؤشرات والنماذج المستخدمة في قراءة السوق.",
         "videos": [
-            {"key": "video7", "title": "🎥 فيديو 7", "file_id": "PLACEHOLDER_VIDEO_7", "is_new": True},
-            {"key": "video8", "title": "🎥 فيديو 8", "file_id": "PLACEHOLDER_VIDEO_8", "is_new": False},
-            {"key": "video9", "title": "🎥 فيديو 9", "file_id": "PLACEHOLDER_VIDEO_9", "is_new": False},
+            {"key": "video17", "title": "🎥 القمم والقيعان", "file_id": "PLACEHOLDER_VIDEO_17", "is_new": True},
+            {"key": "video18", "title": "🎥 الاتجاه الصاعد والهابط - الجزء الأول", "file_id": "PLACEHOLDER_VIDEO_18", "is_new": True},
+            {"key": "video19", "title": "🎥 الاتجاه الصاعد والهابط - الجزء الثاني", "file_id": "PLACEHOLDER_VIDEO_19", "is_new": False},
+            {"key": "video20", "title": "🎥 الدعم والمقاومة - الجزء الأول", "file_id": "PLACEHOLDER_VIDEO_20", "is_new": False},
+            {"key": "video21", "title": "🎥 الدعم والمقاومة - الجزء الثاني", "file_id": "PLACEHOLDER_VIDEO_21", "is_new": False},
+            {"key": "video22", "title": "🎥 مؤشر RSI", "file_id": "PLACEHOLDER_VIDEO_22", "is_new": False},
+            {"key": "video23", "title": "🎥 مؤشر Stochastic - الجزء الأول", "file_id": "PLACEHOLDER_VIDEO_23", "is_new": False},
+            {"key": "video24", "title": "🎥 مؤشر Stochastic - الجزء الثاني", "file_id": "PLACEHOLDER_VIDEO_24", "is_new": False},
+            {"key": "video25", "title": "🎥 مؤشر MACD - الجزء الأول", "file_id": "PLACEHOLDER_VIDEO_25", "is_new": False},
+            {"key": "video26", "title": "🎥 مؤشر MACD - الجزء الثاني", "file_id": "PLACEHOLDER_VIDEO_26", "is_new": False},
+            {"key": "video27", "title": "🎥 فيبوناتشي", "file_id": "PLACEHOLDER_VIDEO_27", "is_new": False},
+            {"key": "video28", "title": "🎥 النظرية الموجية", "file_id": "PLACEHOLDER_VIDEO_28", "is_new": False},
+            {"key": "video29", "title": "🎥 الفراغات السعرية", "file_id": "PLACEHOLDER_VIDEO_29", "is_new": False},
+            {"key": "video30", "title": "🎥 النماذج السعرية الكلاسيكية - الجزء الأول", "file_id": "PLACEHOLDER_VIDEO_30", "is_new": False},
+            {"key": "video31", "title": "🎥 النماذج السعرية الكلاسيكية - الجزء الثاني", "file_id": "PLACEHOLDER_VIDEO_31", "is_new": False},
+            {"key": "video32", "title": "🎥 النماذج السعرية الكلاسيكية - الجزء الثالث", "file_id": "PLACEHOLDER_VIDEO_32", "is_new": False},
         ],
     },
+
     "idea4": {
         "title": "🕯️ الشموع اليابانية",
-        "description": "فهم الشموع اليابانية والنماذج الانعكاسية والاستمرارية بشكل عملي.",
+        "description": "في هذا القسم ستتعلم قراءة الشموع اليابانية وأهم النماذج المستخدمة في التحليل.",
         "videos": [
-            {"key": "video10", "title": "🎥 فيديو 10", "file_id": "PLACEHOLDER_VIDEO_10", "is_new": True},
-            {"key": "video11", "title": "🎥 فيديو 11", "file_id": "PLACEHOLDER_VIDEO_11", "is_new": False},
-            {"key": "video12", "title": "🎥 فيديو 12", "file_id": "PLACEHOLDER_VIDEO_12", "is_new": False},
+            {"key": "video33", "title": "🎥 مقدمة عن الشموع اليابانية", "file_id": "PLACEHOLDER_VIDEO_33", "is_new": True},
+            {"key": "video34", "title": "🎥 المطرقة والمطرقة المقلوبة والرجل المشنوق", "file_id": "PLACEHOLDER_VIDEO_34", "is_new": True},
+            {"key": "video35", "title": "🎥 نجمة الصباح ونجمة المساء", "file_id": "PLACEHOLDER_VIDEO_35", "is_new": False},
+            {"key": "video36", "title": "🎥 شمعة الدوجي", "file_id": "PLACEHOLDER_VIDEO_36", "is_new": False},
+            {"key": "video37", "title": "🎥 الشموع عالية الظلال", "file_id": "PLACEHOLDER_VIDEO_37", "is_new": False},
+            {"key": "video38", "title": "🎥 الابتلاع الشرائي والبيعي", "file_id": "PLACEHOLDER_VIDEO_38", "is_new": False},
+            {"key": "video39", "title": "🎥 السحابة القاتمة والخط الثاقب", "file_id": "PLACEHOLDER_VIDEO_39", "is_new": False},
+            {"key": "video40", "title": "🎥 الهرامي الشرائي والبيعي", "file_id": "PLACEHOLDER_VIDEO_40", "is_new": False},
         ],
     },
 }
@@ -109,45 +136,26 @@ FAQ_TEXT = """
 نعم، الوصول دائم بعد تأكيد الدفع.
 
 2) هل أستطيع مشاهدة الفيديوهات أكثر من مرة؟
-نعم، يمكنك مشاهدتها أكثر من مرة.
+نعم.
 
 3) ماذا أفعل إذا تم رفض إشعار الدفع؟
 أرسل صورة أوضح لإشعار الدفع ثم أعد المحاولة.
 
 4) هل يمكن إعادة توجيه الفيديوهات؟
 لا، الفيديوهات محمية داخل البوت.
-
-5) كيف أبدأ الكورس؟
-ابدأ من قسم المصطلحات الأساسية ثم تابع بالترتيب.
 """
 
 COURSE_OVERVIEW_TEXT = """
 📘 محتوى الكورس
 
 1️⃣ المصطلحات الأساسية
-- التعرف على المفاهيم الأساسية في التداول
-- فهم لغة السوق
-
 2️⃣ التحليل الأساسي
-- الأخبار الاقتصادية
-- الفائدة والتضخم
-- الناتج المحلي وأثره
-
 3️⃣ التحليل الفني
-- الدعوم والمقاومات
-- الاتجاهات
-- النماذج الفنية
-
 4️⃣ الشموع اليابانية
-- أنواع الشموع
-- النماذج الانعكاسية والاستمرارية
 
 💲 سعر الكورس: 25$
 """
 
-# =========================
-# قاعدة البيانات
-# =========================
 conn = sqlite3.connect("users.db", check_same_thread=False)
 cursor = conn.cursor()
 
@@ -184,18 +192,36 @@ CREATE TABLE IF NOT EXISTS sales(
 )
 """)
 
+cursor.execute("""
+CREATE TABLE IF NOT EXISTS bot_state(
+    key TEXT PRIMARY KEY,
+    value TEXT
+)
+""")
+
 conn.commit()
 
 
-# =========================
-# أدوات مساعدة
-# =========================
 def now_str() -> str:
     return datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S UTC")
 
 
 def is_admin(user_id: int) -> bool:
     return user_id == ADMIN_ID
+
+
+def set_state(key: str, value: str):
+    cursor.execute(
+        "INSERT OR REPLACE INTO bot_state (key, value) VALUES (?, ?)",
+        (key, value)
+    )
+    conn.commit()
+
+
+def get_state(key: str):
+    cursor.execute("SELECT value FROM bot_state WHERE key=?", (key,))
+    row = cursor.fetchone()
+    return row[0] if row else None
 
 
 def ensure_user(user_id: int, username: str | None, first_name: str | None) -> None:
@@ -244,25 +270,6 @@ def find_video(video_key: str):
     return None, None, None
 
 
-def get_unwatched_new_videos_count(user_id: int) -> int:
-    new_keys = []
-    for section in VIDEO_CATALOG.values():
-        for video in section["videos"]:
-            if video["is_new"]:
-                new_keys.append(video["key"])
-
-    if not new_keys:
-        return 0
-
-    placeholders = ",".join(["?"] * len(new_keys))
-    cursor.execute(
-        f"SELECT video_key FROM watched WHERE user_id=? AND video_key IN ({placeholders})",
-        [user_id, *new_keys]
-    )
-    watched_keys = {row[0] for row in cursor.fetchall()}
-    return len([k for k in new_keys if k not in watched_keys])
-
-
 def main_menu_keyboard(is_paid: bool):
     keyboard = [
         [InlineKeyboardButton("📘 محتوى الكورس", callback_data="menu_course")],
@@ -293,9 +300,16 @@ def payment_keyboard():
     ])
 
 
-# =========================
-# القائمة الرئيسية
-# =========================
+def admin_panel_keyboard():
+    return InlineKeyboardMarkup([
+        [InlineKeyboardButton("📊 الإحصائيات", callback_data="admin_stats")],
+        [InlineKeyboardButton("💰 آخر المبيعات", callback_data="admin_sales")],
+        [InlineKeyboardButton("👥 عدد المستخدمين", callback_data="admin_users")],
+        [InlineKeyboardButton("📢 إرسال إعلان", callback_data="admin_broadcast")],
+        [InlineKeyboardButton("🏠 رجوع", callback_data="admin_back")],
+    ])
+
+
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user = update.effective_user
     ensure_user(user.id, user.username, user.first_name)
@@ -316,6 +330,92 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
         welcome_text,
         reply_markup=main_menu_keyboard(paid)
     )
+
+
+async def admin_panel(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    if not is_admin(update.effective_user.id):
+        return
+
+    await update.message.reply_text(
+        "🛠 لوحة الأدمن",
+        reply_markup=admin_panel_keyboard()
+    )
+
+
+async def admin_router(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    query = update.callback_query
+    await query.answer()
+
+    if not is_admin(query.from_user.id):
+        await query.answer("غير مسموح", show_alert=True)
+        return
+
+    if query.data == "admin_stats":
+        cursor.execute("SELECT COUNT(*) FROM users")
+        total_users = cursor.fetchone()[0]
+
+        cursor.execute("SELECT COUNT(*) FROM users WHERE approved=1")
+        paid_users = cursor.fetchone()[0]
+
+        cursor.execute("SELECT COUNT(*) FROM sales")
+        sales_count = cursor.fetchone()[0]
+
+        cursor.execute("SELECT COUNT(*) FROM watched")
+        watched_count = cursor.fetchone()[0]
+
+        await query.message.reply_text(
+            f"📊 إحصائيات البوت\n\n"
+            f"👥 عدد المستخدمين: {total_users}\n"
+            f"💰 عدد المشترين: {paid_users}\n"
+            f"🧾 عدد عمليات البيع: {sales_count}\n"
+            f"🎥 عدد المشاهدات المسجلة: {watched_count}"
+        )
+        return
+
+    if query.data == "admin_sales":
+        cursor.execute("""
+            SELECT user_id, payment_method, approved_at
+            FROM sales
+            ORDER BY id DESC
+            LIMIT 10
+        """)
+        rows = cursor.fetchall()
+
+        if not rows:
+            await query.message.reply_text("لا توجد مبيعات مسجلة بعد.")
+            return
+
+        lines = ["💰 آخر 10 مبيعات:\n"]
+        for row in rows:
+            lines.append(f"👤 {row[0]} | 💳 {row[1]} | 🕒 {row[2]}")
+
+        await query.message.reply_text("\n".join(lines))
+        return
+
+    if query.data == "admin_users":
+        cursor.execute("SELECT COUNT(*) FROM users")
+        total_users = cursor.fetchone()[0]
+
+        cursor.execute("SELECT COUNT(*) FROM users WHERE approved=1")
+        paid_users = cursor.fetchone()[0]
+
+        await query.message.reply_text(
+            f"👥 المستخدمون\n\n"
+            f"إجمالي المستخدمين: {total_users}\n"
+            f"المستخدمون الدافعون: {paid_users}"
+        )
+        return
+
+    if query.data == "admin_broadcast":
+        set_state("broadcast_pending", "1")
+        await query.message.reply_text(
+            "📢 أرسل الآن نص الإعلان الذي تريد إرساله لكل المشتركين."
+        )
+        return
+
+    if query.data == "admin_back":
+        await query.message.reply_text("🏠 رجعت من لوحة الأدمن.")
+        return
 
 
 async def menu_router(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -368,9 +468,6 @@ async def menu_router(update: Update, context: ContextTypes.DEFAULT_TYPE):
         return
 
 
-# =========================
-# الدفع
-# =========================
 async def payment(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
     await query.answer()
@@ -405,7 +502,6 @@ async def receive_proof(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user = update.effective_user
     ensure_user(user.id, user.username, user.first_name)
 
-    # دعم: إذا كان المستخدم في وضع إرسال رسالة دعم وأرسل نصًا وليس صورة
     cursor.execute("SELECT support_pending FROM users WHERE user_id=?", (user.id,))
     row = cursor.fetchone()
     support_pending = bool(row and row[0] == 1)
@@ -425,7 +521,6 @@ async def receive_proof(update: Update, context: ContextTypes.DEFAULT_TYPE):
         return
 
     if not update.message.photo:
-        # إذا كان دعمًا نصيًا، عولج فوق. إذا غير ذلك لا نفعل شيئًا.
         return
 
     message_time = update.message.date.timestamp()
@@ -470,9 +565,6 @@ async def receive_proof(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("✅ تم إرسال الإشعار للمراجعة.")
 
 
-# =========================
-# قبول / رفض الدفع
-# =========================
 async def approve(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
     await query.answer()
@@ -555,9 +647,6 @@ async def reject(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
 
 
-# =========================
-# المكتبة والأقسام
-# =========================
 async def library(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
     await query.answer()
@@ -608,9 +697,6 @@ async def ideas(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
 
 
-# =========================
-# التقدم / المتابعة / الجديد
-# =========================
 async def progress(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
     await query.answer()
@@ -696,9 +782,6 @@ async def whats_new(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await query.message.reply_text("🆕 الدروس الجديدة:\n\n" + "\n".join(lines))
 
 
-# =========================
-# الفيديوهات
-# =========================
 async def videos(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
     await query.answer()
@@ -734,9 +817,6 @@ async def videos(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
 
 
-# =========================
-# أوامر الأدمن
-# =========================
 async def stats(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if not is_admin(update.effective_user.id):
         return
@@ -757,7 +837,7 @@ async def stats(update: Update, context: ContextTypes.DEFAULT_TYPE):
         f"📊 إحصائيات البوت\n\n"
         f"👥 عدد المستخدمين: {total_users}\n"
         f"💰 عدد المشترين: {paid_users}\n"
-        f"🧾 عدد عمليات البيع المسجلة: {sales_count}\n"
+        f"🧾 عدد عمليات البيع: {sales_count}\n"
         f"🎥 عدد المشاهدات المسجلة: {watched_count}"
     )
 
@@ -809,15 +889,30 @@ async def broadcast(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(f"✅ تم إرسال الإعلان إلى {sent} مستخدم.")
 
 
-# =========================
-# نصوص الدعم
-# =========================
 async def support_text_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if not update.message or not update.message.text:
         return
 
     user = update.effective_user
     ensure_user(user.id, user.username, user.first_name)
+
+    if is_admin(user.id) and get_state("broadcast_pending") == "1":
+        message = update.message.text
+
+        cursor.execute("SELECT user_id FROM users WHERE approved=1")
+        users = [row[0] for row in cursor.fetchall()]
+
+        sent = 0
+        for user_id in users:
+            try:
+                await context.bot.send_message(user_id, f"📢 إعلان جديد\n\n{message}")
+                sent += 1
+            except Exception:
+                pass
+
+        set_state("broadcast_pending", "0")
+        await update.message.reply_text(f"✅ تم إرسال الإعلان إلى {sent} مستخدم.")
+        return
 
     cursor.execute("SELECT support_pending FROM users WHERE user_id=?", (user.id,))
     row = cursor.fetchone()
@@ -841,19 +936,18 @@ async def support_text_handler(update: Update, context: ContextTypes.DEFAULT_TYP
     await update.message.reply_text("✅ تم إرسال رسالتك إلى الدعم.")
 
 
-# =========================
-# التشغيل
-# =========================
 if not TOKEN:
     raise ValueError("TOKEN is missing. Set it in Render Environment Variables.")
 
 app = ApplicationBuilder().token(TOKEN).build()
 
 app.add_handler(CommandHandler("start", start))
+app.add_handler(CommandHandler("admin", admin_panel))
 app.add_handler(CommandHandler("stats", stats))
 app.add_handler(CommandHandler("sales", sales))
 app.add_handler(CommandHandler("broadcast", broadcast))
 
+app.add_handler(CallbackQueryHandler(admin_router, pattern="^admin_"))
 app.add_handler(CallbackQueryHandler(menu_router, pattern="^menu_"))
 app.add_handler(CallbackQueryHandler(payment, pattern="^pay_"))
 app.add_handler(CallbackQueryHandler(paid, pattern="^paid$"))
