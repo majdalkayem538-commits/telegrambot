@@ -571,11 +571,12 @@ async def approve(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
     await query.answer()
 
-    if not is_admin(query.from_user.id):
-        await query.answer("غير مسموح", show_alert=True)
-        return
-
     user_id = int(query.data.split("_")[1])
+
+    user = await context.bot.get_chat(user_id)
+
+    name = user.first_name
+    username = user.username if user.username else "لا يوجد"
 
     cursor.execute("SELECT proof_message_id, selected_payment FROM users WHERE user_id=?", (user_id,))
     row = cursor.fetchone()
@@ -583,46 +584,37 @@ async def approve(update: Update, context: ContextTypes.DEFAULT_TYPE):
     proof_message_id = row[0] if row else None
     selected_payment = row[1] if row else None
 
-    if proof_message_id:
-        try:
-            await context.bot.delete_message(
-                chat_id=user_id,
-                message_id=proof_message_id
-            )
-        except Exception:
-            pass
-
     approved_at = now_str()
 
     cursor.execute(
         "UPDATE users SET approved=1, approved_at=? WHERE user_id=?",
         (approved_at, user_id)
     )
-    cursor.execute(
-        "INSERT INTO sales (user_id, payment_method, approved_at) VALUES (?, ?, ?)",
-        (user_id, get_payment_label(selected_payment), approved_at)
-    )
     conn.commit()
-
-    keyboard = [
-        [InlineKeyboardButton("📚 دخول مكتبة الفيديوهات", callback_data="library")],
-        [InlineKeyboardButton("📊 تقدمي في الكورس", callback_data="progress")],
-    ]
 
     await context.bot.send_message(
         user_id,
-        "🎉 مبروك!\n\n"
-        "تم تأكيد الدفع بنجاح ✅\n\n"
-        "📚 يمكنك الآن الوصول إلى مكتبة الفيديوهات الخاصة بالكورس.\n\n"
-        "ابدأ أولاً من قسم المصطلحات الأساسية ثم تابع بالترتيب 👇",
-        reply_markup=InlineKeyboardMarkup(keyboard)
+        "🎉 تم تأكيد الدفع بنجاح!\n\nيمكنك الآن الدخول إلى مكتبة الفيديوهات."
     )
 
-    await query.edit_message_text(
-        f"✅ تم الدفع\n\n"
-        f"👤 المستخدم: {user_id}\n"
-        f"💳 الطريقة: {get_payment_label(selected_payment)}\n"
-        f"📚 تم فتح الوصول إلى الفيديوهات"
+    # حذف رسالة إشعار الدفع من عند الأدمن
+    try:
+        await query.message.delete()
+    except:
+        pass
+
+    # رسالة للأدمن
+    await context.bot.send_message(
+        ADMIN_ID,
+        f"""
+✅ تم قبول الدفع
+
+👤 الاسم: {name}
+🔗 اليوزر: @{username}
+🆔 ID: {user_id}
+
+أصبح المستخدم يستطيع الوصول للفيديوهات
+"""
     )
 
 
@@ -630,22 +622,36 @@ async def reject(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
     await query.answer()
 
-    if not is_admin(query.from_user.id):
-        await query.answer("غير مسموح", show_alert=True)
-        return
-
     user_id = int(query.data.split("_")[1])
+
+    user = await context.bot.get_chat(user_id)
+
+    name = user.first_name
+    username = user.username if user.username else "لا يوجد"
 
     await context.bot.send_message(
         user_id,
-        "❌ إشعار الدفع غير صحيح.\n\n"
-        "يرجى التأكد من إرسال صورة واضحة لإشعار الدفع ثم المحاولة مرة أخرى."
+        "❌ إشعار الدفع غير صحيح.\n\nيرجى إرسال صورة صحيحة لإثبات الدفع."
     )
 
-    await query.edit_message_text(
-        f"❌ تم رفض الإشعار\n\n"
-        f"👤 المستخدم: {user_id}\n"
-        f"📎 الإشعار غير صحيح"
+    # حذف رسالة الإشعار من عند الأدمن
+    try:
+        await query.message.delete()
+    except:
+        pass
+
+    # رسالة للأدمن
+    await context.bot.send_message(
+        ADMIN_ID,
+        f"""
+❌ تم رفض الدفع
+
+👤 الاسم: {name}
+🔗 اليوزر: @{username}
+🆔 ID: {user_id}
+
+السبب: إشعار الدفع غير صحيح
+"""
     )
 
 
@@ -966,10 +972,16 @@ app.add_handler(MessageHandler(filters.PHOTO, receive_proof))
 app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, support_text_handler))
 
 class Handler(BaseHTTPRequestHandler):
+
     def do_GET(self):
         self.send_response(200)
+        self.send_header("Content-type", "text/plain")
         self.end_headers()
         self.wfile.write(b"Bot is running")
+
+    def do_HEAD(self):
+        self.send_response(200)
+        self.end_headers()
 
 def run_web_server():
     port = int(os.getenv("PORT", 10000))
