@@ -2,6 +2,8 @@ import os
 import sqlite3
 import time
 from datetime import datetime
+import threading
+from http.server import HTTPServer, BaseHTTPRequestHandler
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import (
     ApplicationBuilder,
@@ -963,5 +965,17 @@ app.add_handler(CallbackQueryHandler(videos, pattern="^video"))
 app.add_handler(MessageHandler(filters.PHOTO, receive_proof))
 app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, support_text_handler))
 
+class Handler(BaseHTTPRequestHandler):
+    def do_GET(self):
+        self.send_response(200)
+        self.end_headers()
+        self.wfile.write(b"Bot is running")
+
+def run_web_server():
+    port = int(os.getenv("PORT", 10000))
+    server = HTTPServer(("0.0.0.0", port), Handler)
+    server.serve_forever()
+
+threading.Thread(target=run_web_server).start()
 print("Bot Running...")
 app.run_polling()
