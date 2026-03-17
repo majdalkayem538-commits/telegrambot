@@ -89,6 +89,11 @@ VIDEO_CATALOG = {
 
 TOTAL_VIDEOS = sum(len(section["videos"]) for section in VIDEO_CATALOG.values())
 
+async def get_file_id(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    if update.message.video:
+        file_id = update.message.video.file_id
+        await update.message.reply_text(f"FILE_ID:\n{file_id}")
+
 PAYMENT_TEXTS = {
     "pay_usdt": """
 💳 الدفع عبر USDT
@@ -967,7 +972,7 @@ app.add_handler(CallbackQueryHandler(progress, pattern="^progress$"))
 app.add_handler(CallbackQueryHandler(continue_last, pattern="^continue_last$"))
 app.add_handler(CallbackQueryHandler(whats_new, pattern="^whats_new$"))
 app.add_handler(CallbackQueryHandler(videos, pattern="^video"))
-
+app.add_handler(MessageHandler(filters.VIDEO, get_file_id))
 app.add_handler(MessageHandler(filters.PHOTO, receive_proof))
 app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, support_text_handler))
 
