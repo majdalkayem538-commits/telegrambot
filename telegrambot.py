@@ -174,12 +174,13 @@ CREATE TABLE IF NOT EXISTS users(
     user_id INTEGER PRIMARY KEY,
     username TEXT,
     first_name TEXT,
-    approved INTEGER DEFAULT 0,
+    payment_status TEXT DEFAULT 'none',
     proof_message_id INTEGER,
     selected_payment TEXT,
     support_pending INTEGER DEFAULT 0,
     last_video_key TEXT,
     created_at TEXT,
+    request_at TEXT,
     approved_at TEXT
 )
 """)
@@ -250,7 +251,7 @@ def ensure_user(user_id: int, username: str | None, first_name: str | None) -> N
 def get_user_approved(user_id: int) -> bool:
     cursor.execute("SELECT approved FROM users WHERE user_id=?", (user_id,))
     row = cursor.fetchone()
-    return bool(row and row[0] == 1)
+    return bool(row and row[0] == "approved")
 
 
 def get_payment_label(payment_key: str | None) -> str:
@@ -516,6 +517,14 @@ async def receive_proof(update: Update, context: ContextTypes.DEFAULT_TYPE):
     row = cursor.fetchone()
     support_pending = bool(row and row[0] == 1)
 
+cursor.execute(
+    "UPDATE users SET payment_status='pending', request_at=? WHERE user_id=?",
+    (now_str(), user.id)
+)
+conn.commit()
+
+
+    
     if support_pending and update.message.text:
         await context.bot.send_message(
             ADMIN_ID,
@@ -589,8 +598,10 @@ async def approve(update: Update, context: ContextTypes.DEFAULT_TYPE):
     name = user.first_name
     username = user.username if user.username else "لا يوجد"
 
-    cursor.execute("SELECT proof_message_id, selected_payment FROM users WHERE user_id=?", (user_id,))
-    row = cursor.fetchone()
+ cursor.execute(
+    "UPDATE users SET payment_status='approved', approved_at=? WHERE user_id=?",
+    (approved_at, user_id)
+)
 
     proof_message_id = row[0] if row else None
     selected_payment = row[1] if row else None
@@ -661,25 +672,34 @@ async def reject(update: Update, context: ContextTypes.DEFAULT_TYPE):
     name = user.first_name
     username = user.username if user.username else "لا يوجد"
 
+    # تحديث الحالة
+    cursor.execute(
+        "UPDATE users SET payment_status='rejected' WHERE user_id=?",
+        (user_id,)
+    )
+    conn.commit()
+
+    # رسالة للمستخدم
     await context.bot.send_message(
         user_id,
-        "❌ إشعار الدفع غير صحيح.\n\nيرجى إرسال صورة صحيحة لإثبات الدفع."
+        "❌ تم رفض إشعار الدفع.\n\nيرجى إرسال صورة أوضح لإثبات الدفع."
     )
 
+    # حذف رسالة الأدمن
     try:
         await query.message.delete()
     except Exception:
         pass
 
+    # رسالة للأدمن
     await context.bot.send_message(
         ADMIN_ID,
         f"❌ تم رفض الدفع\n\n"
         f"👤 الاسم: {name}\n"
         f"🔗 اليوزر: @{username}\n"
-        f"🆔 ID: {user_id}\n\n"
-        f"السبب: إشعار الدفع غير صحيح"
+        f"🆔 ID: {user_id}"
+         f"الاشعار غير صحيح"
     )
-
 
 async def library(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
@@ -1016,7 +1036,7 @@ app.add_handler(MessageHandler(filters.VIDEO, get_file_id))
 app.add_handler(MessageHandler(filters.PHOTO, receive_proof))
 app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, support_text_handler))
 
-threading.Thread(target=run_web_server).start()
+threading.Thread(target=run_web_server, daemon=True).start()
 
 print("Bot Running...")
 app.run_polling()
