@@ -22,13 +22,14 @@ VIDEO_CATALOG = {
         "title": "📚 المصطلحات الأساسية",
         "description": "في هذا القسم ستتعلم أهم المصطلحات الأساسية في عالم التداول من البداية.",
         "videos": [
-            {"key": "video1", "title": "🎥 أنواع أسواق المال", "file_id": "PLACEHOLDER_VIDEO_1", "is_new": True},
-            {"key": "video2", "title": "🎥 مزايا الفوركس", "file_id": "PLACEHOLDER_VIDEO_2", "is_new": True},
-            {"key": "video3", "title": "🎥 العملات المتداولة", "file_id": "PLACEHOLDER_VIDEO_3", "is_new": False},
-            {"key": "video4", "title": "🎥 أزواج العملات", "file_id": "PLACEHOLDER_VIDEO_4", "is_new": False},
-            {"key": "video5", "title": "🎥 أحجام العقود", "file_id": "PLACEHOLDER_VIDEO_5", "is_new": False},
-            {"key": "video6", "title": "🎥 النقطة وكيفية حساب الأرباح", "file_id": "PLACEHOLDER_VIDEO_6", "is_new": False},
-            {"key": "video7", "title": "🎥 الرافعة المالية", "file_id": "PLACEHOLDER_VIDEO_7", "is_new": False},
+            {"key": "video1", "title": "🎥 المقدمة", "file_id": "BAACAgQAAxkBAAIB1Wm5Nx3RNkMTyxUAAWkUzqDhqZoMIAAC5x0AAo_N0VHDkAtlkTRmMToE", "is_new": True},
+            {"key": "video2", "title": "🎥 أنواع أسواق المال", "file_id": "BAACAgQAAxkBAAIB3Gm5RrqcetQ7TgO2uliw5JNe1dOPAAL0HQACj83RUeLX2wciEyI9OgQ", "is_new": True},
+            {"key": "video3", "title": "🎥 مزايا الفوركس", "file_id": "BAACAgQAAxkBAAIB3mm5R3LRK72GEfs6tyQufoHXbuDrAAL1HQACj83RUVp-0qQi65siOgQ", "is_new": True},
+            {"key": "video4", "title": "🎥 العملات المتداولة", "file_id": "BAACAgQAAxkBAAIB4Gm5SEMHvJZsymaAPFZUqzO5uN9vAAL2HQACj83RUcHeEnjE-4OYOgQ", "is_new": False},
+            {"key": "video5", "title": "🎥 أزواج العملات", "file_id": "BAACAgQAAxkBAAIB4mm5SNiz2wb21DxintOYIERcP_1YAAL3HQACj83RUeMYWpVcaqa3OgQ", "is_new": False},
+            {"key": "video6", "title": "🎥 أحجام العقود", "file_id": "BAACAgQAAxkBAAIB5Gm5Sd5EV2REkKeL6kIsmWKIe9v0AAL4HQACj83RUeub7aNxLd3eOgQ", "is_new": False},
+            {"key": "video7", "title": "🎥 النقطة وكيفية حساب الأرباح", "file_id": "BAACAgQAAxkBAAIB5mm5WB7bWK6sYW3AzDeqirdDVPNAAAL_HQACj83RUYXXFb_clCCDOgQ", "is_new": False},
+            {"key": "video8", "title": "🎥 الرافعة المالية", "file_id": "BAACAgQAAxkBAAIB6Gm5WGhxcg8yk6kHW742-FCmE2mvAAMeAAKPzdFRDoHyUxiaOYY6BA", "is_new": False},
         ],
     },
 
@@ -36,15 +37,15 @@ VIDEO_CATALOG = {
         "title": "🏛️ التحليل الأساسي",
         "description": "في هذا القسم ستتعلم التحليل الأساسي وتأثير المؤشرات الاقتصادية والسياسية على السوق.",
         "videos": [
-            {"key": "video8", "title": "🎥 معنى التحليل الأساسي", "file_id": "PLACEHOLDER_VIDEO_8", "is_new": True},
-            {"key": "video9", "title": "🎥 معدل الفائدة وتأثيره - الجزء الأول", "file_id": "PLACEHOLDER_VIDEO_9", "is_new": True},
-            {"key": "video10", "title": "🎥 معدل الفائدة وتأثيره - الجزء الثاني", "file_id": "PLACEHOLDER_VIDEO_10", "is_new": False},
-            {"key": "video11", "title": "🎥 الناتج المحلي الإجمالي - الجزء الأول", "file_id": "PLACEHOLDER_VIDEO_11", "is_new": False},
-            {"key": "video12", "title": "🎥 الناتج المحلي الإجمالي - الجزء الثاني", "file_id": "PLACEHOLDER_VIDEO_12", "is_new": False},
-            {"key": "video13", "title": "🎥 معدل البطالة", "file_id": "PLACEHOLDER_VIDEO_13", "is_new": False},
-            {"key": "video14", "title": "🎥 التضخم وأنواعه - الجزء الأول", "file_id": "PLACEHOLDER_VIDEO_14", "is_new": False},
-            {"key": "video15", "title": "🎥 التضخم وأنواعه - الجزء الثاني", "file_id": "PLACEHOLDER_VIDEO_15", "is_new": False},
-            {"key": "video16", "title": "🎥 الأحداث السياسية والتجارة الدولية وتأثيرها", "file_id": "PLACEHOLDER_VIDEO_16", "is_new": False},
+            {"key": "video9", "title": "🎥 معنى التحليل الأساسي", "file_id": "PLACEHOLDER_VIDEO_9", "is_new": True},
+            {"key": "video10", "title": "🎥 معدل الفائدة وتأثيره - الجزء الأول", "file_id": "PLACEHOLDER_VIDEO_10", "is_new": True},
+            {"key": "video11", "title": "🎥 معدل الفائدة وتأثيره - الجزء الثاني", "file_id": "PLACEHOLDER_VIDEO_11", "is_new": False},
+            {"key": "video12", "title": "🎥 الناتج المحلي الإجمالي - الجزء الأول", "file_id": "PLACEHOLDER_VIDEO_12", "is_new": False},
+            {"key": "video13", "title": "🎥 الناتج المحلي الإجمالي - الجزء الثاني", "file_id": "PLACEHOLDER_VIDEO_13", "is_new": False},
+            {"key": "video14", "title": "🎥 معدل البطالة", "file_id": "PLACEHOLDER_VIDEO_14", "is_new": False},
+            {"key": "video15", "title": "🎥 التضخم وأنواعه - الجزء الأول", "file_id": "PLACEHOLDER_VIDEO_15", "is_new": False},
+            {"key": "video16", "title": "🎥 التضخم وأنواعه - الجزء الثاني", "file_id": "PLACEHOLDER_VIDEO_16", "is_new": False},
+            {"key": "video17", "title": "🎥 الأحداث السياسية والتجارة الدولية وتأثيرها", "file_id": "PLACEHOLDER_VIDEO_17", "is_new": False},
         ],
     },
 
@@ -52,22 +53,22 @@ VIDEO_CATALOG = {
         "title": "📈 التحليل الفني",
         "description": "في هذا القسم ستتعلم التحليل الفني وأهم الأدوات والمؤشرات والنماذج المستخدمة في قراءة السوق.",
         "videos": [
-            {"key": "video17", "title": "🎥 القمم والقيعان", "file_id": "PLACEHOLDER_VIDEO_17", "is_new": True},
-            {"key": "video18", "title": "🎥 الاتجاه الصاعد والهابط - الجزء الأول", "file_id": "PLACEHOLDER_VIDEO_18", "is_new": True},
-            {"key": "video19", "title": "🎥 الاتجاه الصاعد والهابط - الجزء الثاني", "file_id": "PLACEHOLDER_VIDEO_19", "is_new": False},
-            {"key": "video20", "title": "🎥 الدعم والمقاومة - الجزء الأول", "file_id": "PLACEHOLDER_VIDEO_20", "is_new": False},
-            {"key": "video21", "title": "🎥 الدعم والمقاومة - الجزء الثاني", "file_id": "PLACEHOLDER_VIDEO_21", "is_new": False},
-            {"key": "video22", "title": "🎥 مؤشر RSI", "file_id": "PLACEHOLDER_VIDEO_22", "is_new": False},
-            {"key": "video23", "title": "🎥 مؤشر Stochastic - الجزء الأول", "file_id": "PLACEHOLDER_VIDEO_23", "is_new": False},
-            {"key": "video24", "title": "🎥 مؤشر Stochastic - الجزء الثاني", "file_id": "PLACEHOLDER_VIDEO_24", "is_new": False},
-            {"key": "video25", "title": "🎥 مؤشر MACD - الجزء الأول", "file_id": "PLACEHOLDER_VIDEO_25", "is_new": False},
-            {"key": "video26", "title": "🎥 مؤشر MACD - الجزء الثاني", "file_id": "PLACEHOLDER_VIDEO_26", "is_new": False},
-            {"key": "video27", "title": "🎥 فيبوناتشي", "file_id": "PLACEHOLDER_VIDEO_27", "is_new": False},
-            {"key": "video28", "title": "🎥 النظرية الموجية", "file_id": "PLACEHOLDER_VIDEO_28", "is_new": False},
-            {"key": "video29", "title": "🎥 الفراغات السعرية", "file_id": "PLACEHOLDER_VIDEO_29", "is_new": False},
-            {"key": "video30", "title": "🎥 النماذج السعرية الكلاسيكية - الجزء الأول", "file_id": "PLACEHOLDER_VIDEO_30", "is_new": False},
-            {"key": "video31", "title": "🎥 النماذج السعرية الكلاسيكية - الجزء الثاني", "file_id": "PLACEHOLDER_VIDEO_31", "is_new": False},
-            {"key": "video32", "title": "🎥 النماذج السعرية الكلاسيكية - الجزء الثالث", "file_id": "PLACEHOLDER_VIDEO_32", "is_new": False},
+            {"key": "video18", "title": "🎥 القمم والقيعان", "file_id": "PLACEHOLDER_VIDEO_18", "is_new": True},
+            {"key": "video19", "title": "🎥 الاتجاه الصاعد والهابط - الجزء الأول", "file_id": "PLACEHOLDER_VIDEO_19", "is_new": True},
+            {"key": "video20", "title": "🎥 الاتجاه الصاعد والهابط - الجزء الثاني", "file_id": "PLACEHOLDER_VIDEO_20", "is_new": False},
+            {"key": "video21", "title": "🎥 الدعم والمقاومة - الجزء الأول", "file_id": "PLACEHOLDER_VIDEO_21", "is_new": False},
+            {"key": "video22", "title": "🎥 الدعم والمقاومة - الجزء الثاني", "file_id": "PLACEHOLDER_VIDEO_22", "is_new": False},
+            {"key": "video23", "title": "🎥 مؤشر RSI", "file_id": "PLACEHOLDER_VIDEO_23", "is_new": False},
+            {"key": "video24", "title": "🎥 مؤشر Stochastic - الجزء الأول", "file_id": "PLACEHOLDER_VIDEO_24", "is_new": False},
+            {"key": "video25", "title": "🎥 مؤشر Stochastic - الجزء الثاني", "file_id": "PLACEHOLDER_VIDEO_25", "is_new": False},
+            {"key": "video26", "title": "🎥 مؤشر MACD - الجزء الأول", "file_id": "PLACEHOLDER_VIDEO_26", "is_new": False},
+            {"key": "video27", "title": "🎥 مؤشر MACD - الجزء الثاني", "file_id": "PLACEHOLDER_VIDEO_27", "is_new": False},
+            {"key": "video28", "title": "🎥 فيبوناتشي", "file_id": "PLACEHOLDER_VIDEO_28", "is_new": False},
+            {"key": "video29", "title": "🎥 النظرية الموجية", "file_id": "PLACEHOLDER_VIDEO_29", "is_new": False},
+            {"key": "video30", "title": "🎥 الفراغات السعرية", "file_id": "PLACEHOLDER_VIDEO_30", "is_new": False},
+            {"key": "video31", "title": "🎥 النماذج السعرية الكلاسيكية - الجزء الأول", "file_id": "PLACEHOLDER_VIDEO_31", "is_new": False},
+            {"key": "video32", "title": "🎥 النماذج السعرية الكلاسيكية - الجزء الثاني", "file_id": "PLACEHOLDER_VIDEO_32", "is_new": False},
+            {"key": "video33", "title": "🎥 النماذج السعرية الكلاسيكية - الجزء الثالث", "file_id": "PLACEHOLDER_VIDEO_33", "is_new": False},
         ],
     },
 
@@ -75,25 +76,25 @@ VIDEO_CATALOG = {
         "title": "🕯️ الشموع اليابانية",
         "description": "في هذا القسم ستتعلم قراءة الشموع اليابانية وأهم النماذج المستخدمة في التحليل.",
         "videos": [
-            {"key": "video33", "title": "🎥 مقدمة عن الشموع اليابانية", "file_id": "PLACEHOLDER_VIDEO_33", "is_new": True},
-            {"key": "video34", "title": "🎥 المطرقة والمطرقة المقلوبة والرجل المشنوق", "file_id": "PLACEHOLDER_VIDEO_34", "is_new": True},
-            {"key": "video35", "title": "🎥 نجمة الصباح ونجمة المساء", "file_id": "PLACEHOLDER_VIDEO_35", "is_new": False},
-            {"key": "video36", "title": "🎥 شمعة الدوجي", "file_id": "PLACEHOLDER_VIDEO_36", "is_new": False},
-            {"key": "video37", "title": "🎥 الشموع عالية الظلال", "file_id": "PLACEHOLDER_VIDEO_37", "is_new": False},
-            {"key": "video38", "title": "🎥 الابتلاع الشرائي والبيعي", "file_id": "PLACEHOLDER_VIDEO_38", "is_new": False},
-            {"key": "video39", "title": "🎥 السحابة القاتمة والخط الثاقب", "file_id": "PLACEHOLDER_VIDEO_39", "is_new": False},
-            {"key": "video40", "title": "🎥 الهرامي الشرائي والبيعي", "file_id": "PLACEHOLDER_VIDEO_40", "is_new": False},
+            {"key": "video34", "title": "🎥 مقدمة عن الشموع اليابانية", "file_id": "PLACEHOLDER_VIDEO_34", "is_new": True},
+            {"key": "video35", "title": "🎥 المطرقة والمطرقة المقلوبة والرجل المشنوق", "file_id": "PLACEHOLDER_VIDEO_35", "is_new": True},
+            {"key": "video36", "title": "🎥 نجمة الصباح ونجمة المساء", "file_id": "PLACEHOLDER_VIDEO_36", "is_new": False},
+            {"key": "video37", "title": "🎥 شمعة الدوجي", "file_id": "PLACEHOLDER_VIDEO_37", "is_new": False},
+            {"key": "video38", "title": "🎥 الشموع عالية الظلال", "file_id": "PLACEHOLDER_VIDEO_38", "is_new": False},
+            {"key": "video39", "title": "🎥 الابتلاع الشرائي والبيعي", "file_id": "PLACEHOLDER_VIDEO_39", "is_new": False},
+            {"key": "video40", "title": "🎥 السحابة القاتمة والخط الثاقب", "file_id": "PLACEHOLDER_VIDEO_40", "is_new": False},
+            {"key": "video41", "title": "🎥 الهرامي الشرائي والبيعي", "file_id": "PLACEHOLDER_VIDEO_41", "is_new": False},
         ],
     },
 }
 
 TOTAL_VIDEOS = sum(len(section["videos"]) for section in VIDEO_CATALOG.values())
 
+
 async def get_file_id(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if update.message.video:
         file_id = update.message.video.file_id
         await update.message.reply_text(f"FILE_ID:\n{file_id}")
-
 
 
 PAYMENT_TEXTS = {
@@ -578,10 +579,13 @@ async def approve(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
     await query.answer()
 
+    if not is_admin(query.from_user.id):
+        await query.answer("غير مسموح", show_alert=True)
+        return
+
     user_id = int(query.data.split("_")[1])
 
     user = await context.bot.get_chat(user_id)
-
     name = user.first_name
     username = user.username if user.username else "لا يوجد"
 
@@ -597,31 +601,49 @@ async def approve(update: Update, context: ContextTypes.DEFAULT_TYPE):
         "UPDATE users SET approved=1, approved_at=? WHERE user_id=?",
         (approved_at, user_id)
     )
+
+    cursor.execute(
+        "INSERT INTO sales (user_id, payment_method, approved_at) VALUES (?, ?, ?)",
+        (user_id, get_payment_label(selected_payment), approved_at)
+    )
     conn.commit()
+
+    # حذف رسالة صورة الإشعار من شات المستخدم
+    if proof_message_id:
+        try:
+            await context.bot.delete_message(
+                chat_id=user_id,
+                message_id=proof_message_id
+            )
+        except Exception:
+            pass
+
+    keyboard = [
+        [InlineKeyboardButton("📚 دخول مكتبة الفيديوهات", callback_data="library")],
+        [InlineKeyboardButton("📊 تقدمي في الكورس", callback_data="progress")],
+        [InlineKeyboardButton("🏠 القائمة الرئيسية", callback_data="menu_home")],
+    ]
 
     await context.bot.send_message(
         user_id,
-        "🎉 تم تأكيد الدفع بنجاح!\n\nيمكنك الآن الدخول إلى مكتبة الفيديوهات."
+        "🎉 تم تأكيد الدفع بنجاح!\n\nيمكنك الآن الدخول إلى مكتبة الفيديوهات.",
+        reply_markup=InlineKeyboardMarkup(keyboard)
     )
 
-    # حذف رسالة إشعار الدفع من عند الأدمن
+    # حذف رسالة الإشعار من عند الأدمن
     try:
         await query.message.delete()
-    except:
+    except Exception:
         pass
 
-    # رسالة للأدمن
+    # رسالة جديدة للأدمن
     await context.bot.send_message(
         ADMIN_ID,
-        f"""
-✅ تم قبول الدفع
-
-👤 الاسم: {name}
-🔗 اليوزر: @{username}
-🆔 ID: {user_id}
-
-أصبح المستخدم يستطيع الوصول للفيديوهات
-"""
+        f"✅ تم قبول الدفع\n\n"
+        f"👤 الاسم: {name}\n"
+        f"🔗 اليوزر: @{username}\n"
+        f"🆔 ID: {user_id}\n\n"
+        f"أصبح المستخدم يستطيع الوصول للفيديوهات"
     )
 
 
@@ -629,10 +651,13 @@ async def reject(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
     await query.answer()
 
+    if not is_admin(query.from_user.id):
+        await query.answer("غير مسموح", show_alert=True)
+        return
+
     user_id = int(query.data.split("_")[1])
 
     user = await context.bot.get_chat(user_id)
-
     name = user.first_name
     username = user.username if user.username else "لا يوجد"
 
@@ -641,26 +666,28 @@ async def reject(update: Update, context: ContextTypes.DEFAULT_TYPE):
         "❌ إشعار الدفع غير صحيح.\n\nيرجى إرسال صورة صحيحة لإثبات الدفع."
     )
 
-    # حذف رسالة الإشعار من عند الأدمن
     try:
         await query.message.delete()
-    except:
+    except Exception:
         pass
 
-    # رسالة للأدمن
     await context.bot.send_message(
         ADMIN_ID,
-        f"""
-❌ تم رفض الدفع
-
-👤 الاسم: {name}
-🔗 اليوزر: @{username}
-🆔 ID: {user_id}
-
-السبب: إشعار الدفع غير صحيح
-"""
+        f"❌ تم رفض الدفع\n\n"
+        f"👤 الاسم: {name}\n"
+        f"🔗 اليوزر: @{username}\n"
+        f"🆔 ID: {user_id}\n\n"
+        f"السبب: إشعار الدفع غير صحيح"
     )
 
+
+async def library(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    query = update.callback_query
+    await query.answer()
+
+    if not get_user_approved(query.from_user.id):
+        await query.message.reply_text("❌ لا يمكنك دخول المكتبة قبل تأكيد الدفع.")
+        return
 
     keyboard = []
     for section_key, section in VIDEO_CATALOG.items():
@@ -943,6 +970,24 @@ async def support_text_handler(update: Update, context: ContextTypes.DEFAULT_TYP
     await update.message.reply_text("✅ تم إرسال رسالتك إلى الدعم.")
 
 
+class Handler(BaseHTTPRequestHandler):
+    def do_GET(self):
+        self.send_response(200)
+        self.send_header("Content-type", "text/plain")
+        self.end_headers()
+        self.wfile.write(b"Bot is running")
+
+    def do_HEAD(self):
+        self.send_response(200)
+        self.end_headers()
+
+
+def run_web_server():
+    port = int(os.getenv("PORT", 10000))
+    server = HTTPServer(("0.0.0.0", port), Handler)
+    server.serve_forever()
+
+
 if not TOKEN:
     raise ValueError("TOKEN is missing. Set it in Render Environment Variables.")
 
@@ -966,27 +1011,12 @@ app.add_handler(CallbackQueryHandler(progress, pattern="^progress$"))
 app.add_handler(CallbackQueryHandler(continue_last, pattern="^continue_last$"))
 app.add_handler(CallbackQueryHandler(whats_new, pattern="^whats_new$"))
 app.add_handler(CallbackQueryHandler(videos, pattern="^video"))
+
 app.add_handler(MessageHandler(filters.VIDEO, get_file_id))
 app.add_handler(MessageHandler(filters.PHOTO, receive_proof))
 app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, support_text_handler))
 
-class Handler(BaseHTTPRequestHandler):
-
-    def do_GET(self):
-        self.send_response(200)
-        self.send_header("Content-type", "text/plain")
-        self.end_headers()
-        self.wfile.write(b"Bot is running")
-
-    def do_HEAD(self):
-        self.send_response(200)
-        self.end_headers()
-
-def run_web_server():
-    port = int(os.getenv("PORT", 10000))
-    server = HTTPServer(("0.0.0.0", port), Handler)
-    server.serve_forever()
-
 threading.Thread(target=run_web_server).start()
+
 print("Bot Running...")
 app.run_polling()
