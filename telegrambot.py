@@ -1,7 +1,7 @@
 import os
 import sqlite3
 import time
-from datetime import datetime
+from datetime import datetime, UTC
 import threading
 from http.server import HTTPServer, BaseHTTPRequestHandler
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
@@ -89,13 +89,6 @@ VIDEO_CATALOG = {
 }
 
 TOTAL_VIDEOS = sum(len(section["videos"]) for section in VIDEO_CATALOG.values())
-
-
-async def get_file_id(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    if update.message.video:
-        file_id = update.message.video.file_id
-        await update.message.reply_text(f"FILE_ID:\n{file_id}")
-
 
 PAYMENT_TEXTS = {
     "pay_usdt": """
@@ -199,6 +192,7 @@ CREATE TABLE IF NOT EXISTS sales(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     user_id INTEGER,
     payment_method TEXT,
+    status TEXT,
     approved_at TEXT
 )
 """)
@@ -214,7 +208,7 @@ conn.commit()
 
 
 def now_str() -> str:
-    return datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S UTC")
+    return datetime.now(UTC).strftime("%Y-%m-%d %H:%M:%S UTC")
 
 
 def is_admin(user_id: int) -> bool:
@@ -249,7 +243,7 @@ def ensure_user(user_id: int, username: str | None, first_name: str | None) -> N
 
 
 def get_user_approved(user_id: int) -> bool:
-    cursor.execute("SELECT approved FROM users WHERE user_id=?", (user_id,))
+    cursor.execute("SELECT payment_status FROM users WHERE user_id=?", (user_id,))
     row = cursor.fetchone()
     return bool(row and row[0] == "approved")
 
@@ -321,6 +315,12 @@ def admin_panel_keyboard():
     ])
 
 
+async def get_file_id(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    if update.message.video:
+        file_id = update.message.video.file_id
+        await update.message.reply_text(f"FILE_ID:\n{file_id}")
+
+
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user = update.effective_user
     ensure_user(user.id, user.username, user.first_name)
@@ -365,10 +365,10 @@ async def admin_router(update: Update, context: ContextTypes.DEFAULT_TYPE):
         cursor.execute("SELECT COUNT(*) FROM users")
         total_users = cursor.fetchone()[0]
 
-        cursor.execute("SELECT COUNT(*) FROM users WHERE approved=1")
+        cursor.execute("SELECT COUNT(*) FROM users WHERE payment_status='approved'")
         paid_users = cursor.fetchone()[0]
 
-        cursor.execute("SELECT COUNT(*) FROM sales")
+        cursor.execute("SELECT COUNT(*) FROM sales WHERE status='approved'")
         sales_count = cursor.fetchone()[0]
 
         cursor.execute("SELECT COUNT(*) FROM watched")
@@ -385,7 +385,7 @@ async def admin_router(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     if query.data == "admin_sales":
         cursor.execute("""
-            SELECT user_id, payment_method, approved_at
+            SELECT user_id, payment_method, status, approved_at
             FROM sales
             ORDER BY id DESC
             LIMIT 10
@@ -396,9 +396,9 @@ async def admin_router(update: Update, context: ContextTypes.DEFAULT_TYPE):
             await query.message.reply_text("لا توجد مبيعات مسجلة بعد.")
             return
 
-        lines = ["💰 آخر 10 مبيعات:\n"]
+        lines = ["💰 آخر 10 عمليات:\n"]
         for row in rows:
-            lines.append(f"👤 {row[0]} | 💳 {row[1]} | 🕒 {row[2]}")
+            lines.append(f"👤 {row[0]} | 💳 {row[1]} | 📌 {row[2]} | 🕒 {row[3]}")
 
         await query.message.reply_text("\n".join(lines))
         return
@@ -407,7 +407,7 @@ async def admin_router(update: Update, context: ContextTypes.DEFAULT_TYPE):
         cursor.execute("SELECT COUNT(*) FROM users")
         total_users = cursor.fetchone()[0]
 
-        cursor.execute("SELECT COUNT(*) FROM users WHERE approved=1")
+        cursor.execute("SELECT COUNT(*) FROM users WHERE payment_status='approved'")
         paid_users = cursor.fetchone()[0]
 
         await query.message.reply_text(
@@ -517,14 +517,6 @@ async def receive_proof(update: Update, context: ContextTypes.DEFAULT_TYPE):
     row = cursor.fetchone()
     support_pending = bool(row and row[0] == 1)
 
-cursor.execute(
-    "UPDATE users SET payment_status='pending', request_at=? WHERE user_id=?",
-    (now_str(), user.id)
-)
-conn.commit()
-
-
-    
     if support_pending and update.message.text:
         await context.bot.send_message(
             ADMIN_ID,
@@ -554,8 +546,8 @@ conn.commit()
     photo = update.message.photo[-1].file_id
 
     cursor.execute(
-        "UPDATE users SET proof_message_id=? WHERE user_id=?",
-        (update.message.message_id, user.id)
+        "UPDATE users SET proof_message_id=?, payment_status='pending', request_at=? WHERE user_id=?",
+        (update.message.message_id, now_str(), user.id)
     )
     conn.commit()
 
@@ -596,12 +588,13 @@ async def approve(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     user = await context.bot.get_chat(user_id)
     name = user.first_name
-    username = user.username if user.username else "لا يوجد"
+    username_text = f"@{user.username}" if user.username else "لا يوجد"
 
- cursor.execute(
-    "UPDATE users SET payment_status='approved', approved_at=? WHERE user_id=?",
-    (approved_at, user_id)
-)
+    cursor.execute(
+        "SELECT proof_message_id, selected_payment FROM users WHERE user_id=?",
+        (user_id,)
+    )
+    row = cursor.fetchone()
 
     proof_message_id = row[0] if row else None
     selected_payment = row[1] if row else None
@@ -609,17 +602,17 @@ async def approve(update: Update, context: ContextTypes.DEFAULT_TYPE):
     approved_at = now_str()
 
     cursor.execute(
-        "UPDATE users SET approved=1, approved_at=? WHERE user_id=?",
+        "UPDATE users SET payment_status='approved', approved_at=? WHERE user_id=?",
         (approved_at, user_id)
     )
 
     cursor.execute(
-        "INSERT INTO sales (user_id, payment_method, approved_at) VALUES (?, ?, ?)",
-        (user_id, get_payment_label(selected_payment), approved_at)
+        "INSERT INTO sales (user_id, payment_method, status, approved_at) VALUES (?, ?, ?, ?)",
+        (user_id, get_payment_label(selected_payment), "approved", approved_at)
     )
+
     conn.commit()
 
-    # حذف رسالة صورة الإشعار من شات المستخدم
     if proof_message_id:
         try:
             await context.bot.delete_message(
@@ -641,18 +634,16 @@ async def approve(update: Update, context: ContextTypes.DEFAULT_TYPE):
         reply_markup=InlineKeyboardMarkup(keyboard)
     )
 
-    # حذف رسالة الإشعار من عند الأدمن
     try:
         await query.message.delete()
     except Exception:
         pass
 
-    # رسالة جديدة للأدمن
     await context.bot.send_message(
         ADMIN_ID,
         f"✅ تم قبول الدفع\n\n"
         f"👤 الاسم: {name}\n"
-        f"🔗 اليوزر: @{username}\n"
+        f"🔗 اليوزر: {username_text}\n"
         f"🆔 ID: {user_id}\n\n"
         f"أصبح المستخدم يستطيع الوصول للفيديوهات"
     )
@@ -670,36 +661,43 @@ async def reject(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     user = await context.bot.get_chat(user_id)
     name = user.first_name
-    username = user.username if user.username else "لا يوجد"
+    username_text = f"@{user.username}" if user.username else "لا يوجد"
 
-    # تحديث الحالة
+    cursor.execute("SELECT selected_payment FROM users WHERE user_id=?", (user_id,))
+    row = cursor.fetchone()
+    selected_payment = row[0] if row else None
+
     cursor.execute(
         "UPDATE users SET payment_status='rejected' WHERE user_id=?",
         (user_id,)
     )
+
+    cursor.execute(
+        "INSERT INTO sales (user_id, payment_method, status, approved_at) VALUES (?, ?, ?, ?)",
+        (user_id, get_payment_label(selected_payment), "rejected", now_str())
+    )
+
     conn.commit()
 
-    # رسالة للمستخدم
     await context.bot.send_message(
         user_id,
         "❌ تم رفض إشعار الدفع.\n\nيرجى إرسال صورة أوضح لإثبات الدفع."
     )
 
-    # حذف رسالة الأدمن
     try:
         await query.message.delete()
     except Exception:
         pass
 
-    # رسالة للأدمن
     await context.bot.send_message(
         ADMIN_ID,
         f"❌ تم رفض الدفع\n\n"
         f"👤 الاسم: {name}\n"
-        f"🔗 اليوزر: @{username}\n"
-        f"🆔 ID: {user_id}"
-         f"الاشعار غير صحيح"
+        f"🔗 اليوزر: {username_text}\n"
+        f"🆔 ID: {user_id}\n"
+        f"📎 الإشعار غير صحيح"
     )
+
 
 async def library(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
@@ -878,10 +876,10 @@ async def stats(update: Update, context: ContextTypes.DEFAULT_TYPE):
     cursor.execute("SELECT COUNT(*) FROM users")
     total_users = cursor.fetchone()[0]
 
-    cursor.execute("SELECT COUNT(*) FROM users WHERE approved=1")
+    cursor.execute("SELECT COUNT(*) FROM users WHERE payment_status='approved'")
     paid_users = cursor.fetchone()[0]
 
-    cursor.execute("SELECT COUNT(*) FROM sales")
+    cursor.execute("SELECT COUNT(*) FROM sales WHERE status='approved'")
     sales_count = cursor.fetchone()[0]
 
     cursor.execute("SELECT COUNT(*) FROM watched")
@@ -901,7 +899,7 @@ async def sales(update: Update, context: ContextTypes.DEFAULT_TYPE):
         return
 
     cursor.execute("""
-        SELECT user_id, payment_method, approved_at
+        SELECT user_id, payment_method, status, approved_at
         FROM sales
         ORDER BY id DESC
         LIMIT 10
@@ -909,12 +907,12 @@ async def sales(update: Update, context: ContextTypes.DEFAULT_TYPE):
     rows = cursor.fetchall()
 
     if not rows:
-        await update.message.reply_text("لا توجد مبيعات مسجلة بعد.")
+        await update.message.reply_text("لا توجد عمليات مسجلة بعد.")
         return
 
-    lines = ["💰 آخر 10 مبيعات:\n"]
+    lines = ["💰 آخر 10 عمليات:\n"]
     for row in rows:
-        lines.append(f"👤 {row[0]} | 💳 {row[1]} | 🕒 {row[2]}")
+        lines.append(f"👤 {row[0]} | 💳 {row[1]} | 📌 {row[2]} | 🕒 {row[3]}")
 
     await update.message.reply_text("\n".join(lines))
 
@@ -929,7 +927,7 @@ async def broadcast(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     message = " ".join(context.args)
 
-    cursor.execute("SELECT user_id FROM users WHERE approved=1")
+    cursor.execute("SELECT user_id FROM users WHERE payment_status='approved'")
     users = [row[0] for row in cursor.fetchall()]
 
     sent = 0
@@ -953,7 +951,7 @@ async def support_text_handler(update: Update, context: ContextTypes.DEFAULT_TYP
     if is_admin(user.id) and get_state("broadcast_pending") == "1":
         message = update.message.text
 
-        cursor.execute("SELECT user_id FROM users WHERE approved=1")
+        cursor.execute("SELECT user_id FROM users WHERE payment_status='approved'")
         users = [row[0] for row in cursor.fetchall()]
 
         sent = 0
