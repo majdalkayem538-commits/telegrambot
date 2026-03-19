@@ -43,9 +43,8 @@ VIDEO_CATALOG = {
             {"key": "video12", "title": "🎥 الناتج المحلي الإجمالي - الجزء الأول", "file_id": "BAACAgQAAxkBAAICk2m73wS6LJeFkihj_lmxQpoO3vwbAAJkGwACLajgUaJi79mIKir4OgQ", "is_new": False},
             {"key": "video13", "title": "🎥 الناتج المحلي الإجمالي - الجزء الثاني", "file_id": "BAACAgQAAxkBAAIClWm73xBCPTELT78uvjlsRXQv0dWyAAJlGwACLajgUTygH8BJqNnCOgQ", "is_new": False},
             {"key": "video14", "title": "🎥 معدل البطالة", "file_id": "BAACAgQAAxkBAAICl2m73x59oktSqTc1-qw9hU5MIHtnAAJmGwACLajgUYvxB_tmO6pVOgQ", "is_new": False},
-            {"key": "video15", "title": "🎥 التضخم وأنواعه - الجزء الأول", "file_id": "BAACAgQAAxkBAAICmWm730i57S1VHqEImO0IOkPmnL8LAAJnGwACLajgURo6b2i0ThAXOgQ", "is_new": False},
-            {"key": "video16", "title": "🎥 التضخم وأنواعه - الجزء الثاني", "file_id": "PLACEHOLDER_VIDEO_16", "is_new": False},
-            {"key": "video17", "title": "🎥 الأحداث السياسية والتجارة الدولية وتأثيرها", "file_id": "BAACAgQAAxkBAAICm2m8CE6nZ23jWVUkHo01PhSmDYNmAAKLGwACLajgUYjYyYzIGxZZOgQ", "is_new": False},
+            {"key": "video15", "title": "🎥 التضخم وأنواعه", "file_id": "BAACAgQAAxkBAAICmWm730i57S1VHqEImO0IOkPmnL8LAAJnGwACLajgURo6b2i0ThAXOgQ", "is_new": False},
+                    {"key": "video17", "title": "🎥 الأحداث السياسية والتجارة الدولية وتأثيرها", "file_id": "BAACAgQAAxkBAAICm2m8CE6nZ23jWVUkHo01PhSmDYNmAAKLGwACLajgUYjYyYzIGxZZOgQ", "is_new": False},
         ],
     },
 
