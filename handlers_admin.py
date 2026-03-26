@@ -1,7 +1,6 @@
 import os
 import pandas as pd
 from datetime import datetime
-from openpyxl import Workbook
 from telegram import Update
 from telegram.ext import ContextTypes
 from database import cursor, conn
