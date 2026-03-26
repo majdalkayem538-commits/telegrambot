@@ -1,4 +1,5 @@
 import os
+import pandas as pd
 from datetime import datetime
 from openpyxl import Workbook
 from telegram import Update
@@ -7,21 +8,8 @@ from database import cursor, conn
 from helpers import is_admin, set_state, get_payment_label
 from keyboards import admin_panel_keyboard
 
+
 def export_sales_to_excel():
-    wb = Workbook()
-    ws = wb.active
-    ws.title = "Sales"
-
-    headers = [
-        "User ID",
-        "Order ID",
-        "Payment Method",
-        "Amount",
-        "Status",
-        "Approved At",
-    ]
-    ws.append(headers)
-
     cursor.execute("""
         SELECT user_id, order_id, payment_method, amount, status, approved_at
         FROM sales
@@ -29,12 +17,22 @@ def export_sales_to_excel():
     """)
     rows = cursor.fetchall()
 
-    for row in rows:
-        ws.append(row)
+    columns = [
+        "User ID",
+        "Order ID",
+        "Payment Method",
+        "Amount",
+        "Status",
+        "Approved At"
+    ]
+
+    df = pd.DataFrame(rows, columns=columns)
 
     os.makedirs("exports", exist_ok=True)
     filename = f"exports/sales_{datetime.now().strftime('%Y%m%d_%H%M%S')}.xlsx"
-    wb.save(filename)
+
+    df.to_excel(filename, index=False, engine="xlsxwriter")
+
     return filename
 
 def get_total_profit():
