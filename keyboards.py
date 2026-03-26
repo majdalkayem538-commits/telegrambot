@@ -1,7 +1,7 @@
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup
 
 def main_menu_keyboard(is_paid: bool):
-    keyboard = [[InlineKeyboardButton("▶️ ستارت", callback_data="menu_home")],[InlineKeyboardButton("💳 شراء الكورس", callback_data="menu_buy")],[InlineKeyboardButton("❓ الأسئلة الشائعة", callback_data="menu_faq")],[InlineKeyboardButton("📩 الدعم", callback_data="menu_support")]]
+    keyboard = [[InlineKeyboardButton("▶️ القائمة الرئيسية", callback_data="menu_home")],[InlineKeyboardButton("💳 شراء الكورس", callback_data="menu_buy")],[InlineKeyboardButton("❓ الأسئلة الشائعة", callback_data="menu_faq")],[InlineKeyboardButton("📩 الدعم", callback_data="menu_support")]]
     if is_paid:
         keyboard.insert(1, [InlineKeyboardButton("📚 مكتبة الفيديوهات", callback_data="library")])
     return InlineKeyboardMarkup(keyboard)
