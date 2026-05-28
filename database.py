@@ -4,7 +4,7 @@ from config import COURSE_PRICE
 
 # ─── اتصال آمن مع الـ threads ───────────────────────────────────────────────
 _local = threading.local()
-DB_PATH = "users.db"
+DB_PATH = "/var/data/users.db"
 
 
 def get_conn():
