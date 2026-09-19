@@ -3,7 +3,7 @@ import os
 # ─── إعدادات البوت ───────────────────────────────────────────────────────────
 TOKEN = os.getenv("TOKEN")
 ADMIN_ID = int(os.getenv("ADMIN_ID", "728810082"))   # ← حطه في Render كـ env variable
-COURSE_PRICE = 50
+COURSE_PRICE = 200
 
 # ─── فيديوهات الكورس ─────────────────────────────────────────────────────────
 VIDEO_CATALOG = {
