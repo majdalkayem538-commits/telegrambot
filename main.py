@@ -57,7 +57,7 @@ app.add_handler(CallbackQueryHandler(ideas,           pattern="^idea"))
 app.add_handler(CallbackQueryHandler(progress,        pattern="^progress$"))
 app.add_handler(CallbackQueryHandler(continue_last,   pattern="^continue_last$"))
 app.add_handler(CallbackQueryHandler(whats_new,       pattern="^whats_new$"))
-app.add_handler(CallbackQueryHandler(videos,          pattern="^video"))
+app.add_handler(CallbackQueryHandler(videos, pattern="^(video|pdf)"))
 
 # رسائل نصية وصور وملفات
 app.add_handler(MessageHandler(filters.PHOTO,                   receive_proof))
