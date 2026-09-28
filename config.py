@@ -82,7 +82,7 @@ VIDEO_CATALOG = {
         "title": "📊 التحليل الفني الاحترافي",
         "description": "في هذا القسم ستحصل على ملفات PDF احترافية تشرح التحليل الفني بعمق مع أمثلة تطبيقية.",
         "videos": [
-            {"key": "pdf1",  "title": "📄 الملف الأول",   "file_id": "BQACAgQAAxkBAAFVHcdqulKiTGNvNAw3TCkvv2Kaa_yQYAAC3yMAAq2Q0VHEm0G005qSqT0E",  "type": "pdf", "is_new": True},
+            {"key": "pdf1",  "title": "📄 الملف الأول",   "file_id": "BQACAgQAAxkBAAFVHnVqul4pqIrPU6fc3rMmmjPavKEvLQACZSMAAp5M2VHkQmF8TZZGlz0E",  "type": "pdf", "is_new": True},
             {"key": "pdf2",  "title": "📄 الملف الثاني",  "file_id": "PLACEHOLDER_PDF2",  "type": "pdf", "is_new": True},
             {"key": "pdf3",  "title": "📄 الملف الثالث",  "file_id": "PLACEHOLDER_PDF3",  "type": "pdf", "is_new": True},
             {"key": "pdf4",  "title": "📄 الملف الرابع",  "file_id": "PLACEHOLDER_PDF4",  "type": "pdf", "is_new": True},
