@@ -78,9 +78,30 @@ VIDEO_CATALOG = {
             {"key": "video42", "title": "🎥 الخاتمة",                           "file_id": "BAACAgQAAxkBAAIDHWnFZMy9j4DwXMUnxkpjagkHYDmmAAKEIAAChywpUpu-tAc4JENUOgQ", "is_new": True},
         ],
     },
+    "idea6": {
+        "title": "📊 التحليل الفني الاحترافي",
+        "description": "في هذا القسم ستحصل على ملفات PDF احترافية تشرح التحليل الفني بعمق مع أمثلة تطبيقية.",
+        "videos": [
+            {"key": "pdf1",  "title": "📄 الملف الأول",   "file_id": "BQACAgQAAxkBAAFVHcdqulKiTGNvNAw3TCkvv2Kaa_yQYAAC3yMAAq2Q0VHEm0G005qSqT0E",  "type": "pdf", "is_new": True},
+            {"key": "pdf2",  "title": "📄 الملف الثاني",  "file_id": "PLACEHOLDER_PDF2",  "type": "pdf", "is_new": True},
+            {"key": "pdf3",  "title": "📄 الملف الثالث",  "file_id": "PLACEHOLDER_PDF3",  "type": "pdf", "is_new": True},
+            {"key": "pdf4",  "title": "📄 الملف الرابع",  "file_id": "PLACEHOLDER_PDF4",  "type": "pdf", "is_new": True},
+            {"key": "pdf5",  "title": "📄 الملف الخامس",  "file_id": "PLACEHOLDER_PDF5",  "type": "pdf", "is_new": True},
+            {"key": "pdf6",  "title": "📄 الملف السادس",  "file_id": "PLACEHOLDER_PDF6",  "type": "pdf", "is_new": True},
+            {"key": "pdf7",  "title": "📄 الملف السابع",  "file_id": "PLACEHOLDER_PDF7",  "type": "pdf", "is_new": True},
+            {"key": "pdf8",  "title": "📄 الملف الثامن",  "file_id": "PLACEHOLDER_PDF8",  "type": "pdf", "is_new": True},
+            {"key": "pdf9",  "title": "📄 الملف التاسع",  "file_id": "PLACEHOLDER_PDF9",  "type": "pdf", "is_new": True},
+            {"key": "pdf10", "title": "📄 الملف العاشر",  "file_id": "PLACEHOLDER_PDF10", "type": "pdf", "is_new": True},
+            {"key": "pdf11", "title": "📄 الملف الحادي عشر", "file_id": "PLACEHOLDER_PDF11", "type": "pdf", "is_new": True},
+            {"key": "pdf12", "title": "📄 الملف الثاني عشر", "file_id": "PLACEHOLDER_PDF12", "type": "pdf", "is_new": True},
+        ],
+    },
 }
 
 TOTAL_VIDEOS = sum(len(s["videos"]) for s in VIDEO_CATALOG.values())
+
+# ترتيب الأقسام للقفل المتسلسل
+SECTION_ORDER = ["idea1", "idea2", "idea3", "idea4", "idea5", "idea6"]
 
 PAYMENT_TEXTS = {
     "pay_usdt":     "💳 الدفع عبر USDT\n\nBEP20:\n0xDBbD77bF4aD00576F66EB8be244E278B813cA8Db\n\nTRC20:\nTW15xXADYSPytvCsoGxA9Z988h35HpJtrN",
@@ -104,6 +125,7 @@ COURSE_OVERVIEW_TEXT = (
     "2️⃣ التحليل الأساسي\n"
     "3️⃣ التحليل الفني\n"
     "4️⃣ الشموع اليابانية\n"
-    "5️⃣ نصائح للمتداولين\n\n"
+    "5️⃣ نصائح للمتداولين\n"
+    "6️⃣ التحليل الفني الاحترافي (PDF)\n\n"
     f"💲 سعر الكورس: {COURSE_PRICE}$"
 )
