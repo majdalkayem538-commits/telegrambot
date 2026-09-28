@@ -607,3 +607,5 @@ async def support_text_handler(update: Update, context: ContextTypes.DEFAULT_TYP
     )
     db_execute("UPDATE users SET support_pending=0 WHERE user_id=?", (user.id,))
     await update.message.reply_text("✅ تم إرسال رسالتك إلى الدعم.")
+
+logger.info("PDF file_id: %s", update.message.document.file_id)
