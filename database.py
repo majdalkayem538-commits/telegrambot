@@ -56,6 +56,12 @@ def init_db():
             key   TEXT PRIMARY KEY,
             value TEXT
         );
+
+        CREATE TABLE IF NOT EXISTS section_access (
+            user_id     INTEGER,
+            section_key TEXT,
+            PRIMARY KEY (user_id, section_key)
+        );
     """)
     conn.commit()
     logger.info("Database initialized ✓")
