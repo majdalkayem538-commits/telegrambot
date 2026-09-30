@@ -582,7 +582,8 @@ async def admin_receive_pdf(update: Update, context: ContextTypes.DEFAULT_TYPE):
         return
     await update.message.reply_text(
         f"📄 اسم الملف: {doc.file_name}\n\n"
-        f"🔑 file_id:\n{doc.file_id}"
+        f"🔑 file_id:\n`{doc.file_id}`",
+        parse_mode="Markdown"
     )
 
 
